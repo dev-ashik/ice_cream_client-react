@@ -1,0 +1,349 @@
+/************************* Home page start *************************
+***************************************************************** */
+/* Home page recent product */
+.home_page-recent_product {
+  min-height: 100vh;
+}
+
+.our_product {
+  padding: 2rem 3rem;
+}
+
+.card {
+  /* background-color: #f7f1e3;    */
+  background-color: #d6c2a0;
+}
+
+.card-body {
+  color: #3d2815;
+}
+
+.card-title {
+  color: #3d2815;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+  background-image: linear-gradient(120deg, #c0ae90 0%, #bbaa8d 100%);
+  color: var(--secondary-color);
+}
+
+.card-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+/* new  */
+
+.product_card-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product_card-section .product_card {
+  width: 20rem;
+  margin: 2rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3); */
+  overflow: hidden;
+
+  /* same size of all box */
+  align-self: normal;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+
+/* .product_card-section .product_card .product_card-body {
+
+} */
+
+.product_card-section .product_card img {
+  width: 100%;
+  height: 15rem;
+  object-fit: contain;
+  /* border-radius: 1rem 1rem 0 0; */
+  transition: all 0.2s ease-in-out;
+}
+
+.product_card-section .product_card:hover {
+  box-shadow: 1px 5px 10px var(--primary-color);
+}
+
+.product_card-section .product_card:hover img {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.product_card-section .product_card .product_card-body .product_header {
+  font-size: 1.7rem;
+  margin: 0.5rem 0;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.product_card-section .product_card .product_card-body p {
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-align: justify;
+}
+
+.product_card-section .product_card-footer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  width: 100%;
+  padding: 0.5rem 0;
+
+  margin-top: auto;
+}
+
+/*  */
+
+/* homepage_first_addvertasment */
+.homepage_first_addvertasment {
+  background-image: linear-gradient(to bottom, #8080805d, #4d4d4d5d),
+    url("../assets/ice-creams/icecream_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 90vh; */
+  width: 100%;
+
+  margin: 2rem 0;
+  padding: 0 4rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homepage_first_addvertasment-left,
+.homepage_first_addvertasment-right {
+  flex: 1;
+  min-width: 400px;
+  text-align: center;
+}
+
+.homepage_first_addvertasment-left h1 {
+  color: lightgray;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.homepage_first_addvertasment-left p {
+  color: rgb(153, 153, 153);
+}
+
+.homepage_first_addvertasment-right {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage_addvertasment {
+  width: 100%;
+  /* background-image:
+    linear-gradient(to bottom, #a8997fad,   #751e11c0),
+    url("../assets/ice-creams/homepage_bg.png"); */
+  background-image: linear-gradient(to bottom, #a8997f80, #a8997f85),
+    url("../assets/ice-creams/homepage_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: fixed;
+  margin: 2rem 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.homepage_addvertasment h2,
+.homepage_addvertasment img {
+  min-width: 24rem;
+  flex: 1;
+}
+
+.homepage_addvertasment h2 {
+  color: var(--primary-color);
+  width: 50%;
+  font-size: 40px;
+  font-weight: 700;
+  padding: 3rem;
+}
+
+.homepage_addvertasment img {
+  height: 30rem;
+  object-fit: contain;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.best_products {
+  margin: 0 2rem;
+}
+
+/************************* Home page end *************************
+***************************************************************** */
+
+/************************* Product Details start *************************
+***************************************************************** */
+
+.productDetails_product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 1px 5px 10px var(--primary-color);
+}
+
+.productDetails_image,
+.productDetails_content {
+  flex: 1;
+  min-width: 30rem;
+}
+
+.productDetails_image img {
+  height: 30rem;
+  object-fit: contain;
+}
+
+.productDetails_content-product_name {
+  color: var(--secondary-color);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.productDetails_content-product_text {
+  text-align: justify;
+  font-size: 19px;
+  color: var(--primary-color);
+}
+
+.productDetails_content-product_price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.productDetails_content-product_priviosPrice {
+  font-weight: 300;
+  text-decoration: line-through;
+}
+
+.productDetails_related-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  margin: 2rem 1rem;
+  /* border-top: 2px solid var(--secondary-color); */
+  /* padding: 2rem 0; */
+}
+
+.productDetails_related-products {
+  width: 20rem;
+  min-height: 20rem;
+  box-shadow: 1px 5px 10px var(--primary-color);
+  border-radius: 20px;
+}
+
+.productDetails_related-products-img {
+  height: 10rem;
+  border-radius: inherit;
+}
+
+.productDetails_related-products-img img {
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.productDetails_related-products-content {
+  padding: 1rem;
+  text-align: center;
+}
+
+.productDetails_related-products-content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/************************* Product Details end *************************
+***************************************************************** */
+
+/************************* about page start *************************
+***************************************************************** */
+.about_page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: linear-gradient(to bottom right, #e0c69a9d, #a592717e), url("../assets/ice-creams/about_contact-bg.jpg");
+  /* background-image: url("../assets/ice-creams/about_contact-bg.jpg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 3rem 0;
+}
+
+.about_page-description {
+  max-width: 40rem;
+  margin: 2rem 0;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0;
+
+}
+
+.contact-links a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.contact_form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+   
+  width: 40rem;
+}
+
+.contact_form form input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+.contact_form form textarea {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+/************************* about page end *************************
+***************************************************************** */
