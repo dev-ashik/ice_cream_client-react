@@ -30,7 +30,7 @@ import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/admin/AdminOrders";
 
 // react-loading-skeleton
-import 'react-loading-skeleton/dist/skeleton.css';
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [count, setCount] = useState(0);
