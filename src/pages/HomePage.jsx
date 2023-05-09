@@ -118,17 +118,17 @@ const HomePage = () => {
         <h4 className="text-center header_text">OUR PRODUCT</h4>
 
         <div>
-          <div class="product_card-section">
+          <div className="product_card-section">
             {products.length > 0 ? (
               <>
                 {products?.slice(0, 6).map((product, index) => (
-                  <div class="product_card" key={index}>
+                  <div className="product_card" key={index}>
                     <img
                       src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product._id}`}
                       alt="ice cream photo"
                     />
-                    <div class="product_card-body">
-                      <h2 class="product_header">{product.name}</h2>
+                    <div className="product_card-body">
+                      <h2 className="product_header">{product.name}</h2>
                       {product.description.length > 30 ? (
                         <p className="card-text">
                           {product.description.substring(0, 70)}...
@@ -138,7 +138,7 @@ const HomePage = () => {
                       )}
                       <p>${product.price}</p>
                     </div>
-                    <div class="product_card-footer">
+                    <div className="product_card-footer">
                       <Link
                         to={`/product/${product.slug}`}
                         className="button_primary"
@@ -168,12 +168,12 @@ const HomePage = () => {
                 {Array(4)
                   .fill()
                   .map((index) => (
-                    <div class="product_card" key={index}>
+                    <div className="product_card" key={index}>
                       {/* for image */}
                       <Skeleton height={150} width={250} />
 
                       <br />
-                      <div class="product_card-body">
+                      <div className="product_card-body">
                         {/* for header */}
                         <Skeleton height={35} width={230} />
 

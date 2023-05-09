@@ -34,12 +34,12 @@ const CusomerReview = () => {
   return (
     <div className="customer_review">
       <h4 className="text-center header_text">WHAT OUR CLIENTS SAYS</h4>
-      <div class="review_card-section">
+      <div className="review_card-section">
         {review_data.map((re) => (
-          <div class="review_card">
+          <div className="review_card">
             <img src={re.img} alt="ice cream photo" />
-            <div class="review_card-body">
-              <h2 class="review_header">{re.name}</h2>
+            <div className="review_card-body">
+              <h2 className="review_header">{re.name}</h2>
 
               <p className="card-text">{re.review}</p>
 
