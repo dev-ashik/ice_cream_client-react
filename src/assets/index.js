@@ -8,6 +8,7 @@ import profile_3 from './person/profile_3.jpg';
 
 import icecream_bg from './ice-creams/icecream_bg.jpg';
 import yellow_ice from './ice-creams/yellow_ice.png';
+import loading_1 from './ice-creams/loading_1.gif';
 
 
 
@@ -19,5 +20,6 @@ export {
     profile_2,
     profile_3,
     icecream_bg,
-    yellow_ice
+    yellow_ice,
+    loading_1
 }

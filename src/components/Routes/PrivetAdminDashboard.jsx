@@ -3,6 +3,7 @@ import { useAuth } from "../../context/auth";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
+import { serverUrl } from "../../serverUrl";
 
 export default function PrivetAdminroute() {
   const [ok, setOk] = useState(false);
@@ -11,7 +12,7 @@ export default function PrivetAdminroute() {
   useEffect(() => {
     const authCheck = async () => {
       const res = await axios.get(
-        "https://shopping-dot-com-server.onrender.com/api/v1/auth/admin-auth");
+        `${serverUrl}/api/v1/auth/admin-auth`);
 
       if (res.data.ok) {
         setOk(true);

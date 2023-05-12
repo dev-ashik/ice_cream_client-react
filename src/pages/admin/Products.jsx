@@ -4,6 +4,9 @@ import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { HiPhotograph } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { serverUrl } from "../../serverUrl";
+import SidebarLayout from "../SidebarLayout/SidebarLayout";
+import { toast } from "react-toastify";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -11,9 +14,7 @@ const Products = () => {
   // get all products
   const getAllProduct = async () => {
     try {
-      const { data } = await axios.get(
-        "https://shopping-dot-com-server.onrender.com/api/v1/product/products"
-      );
+      const { data } = await axios.get(`${serverUrl}/api/v1/product/products`);
       if (data.success) {
         setProducts(data.products);
       }
@@ -27,77 +28,72 @@ const Products = () => {
     getAllProduct();
   }, []);
 
+  console.log(products);
+
   return (
-    <Layout>
-      <div className="row">
-        <div className="col-md-3">
-          <AdminMenu />
-        </div>
-        <div className="col-md-9">
-          <h2>All products list</h2>
+    <Layout className="all_products">
+      <SidebarLayout>
+        <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+          <h3 className="header_text">All products list</h3>
+          <h3 className="header_text">Total Products {products?.length} pice</h3>
           {products?.length > 0 ? (
-            <div>
-              <div className="list-group">
-                {products?.map((product) => (
-                  <Link
-                    to={`/dashboard/admin/products/${product.slug}`}
-                    className="list-group-item"
-                    key={product._id}
-                    style={{ display: "flex", gap: "20px" }}
-                  >
-                    <div
+            <div className="list-group">
+              {products?.map((product, index) => (
+                <Link
+                  to={`/dashboard/admin/products/${product.slug}`}
+                  className="row mb-3 text-decoration-none text-black border border-primary p-3 position-relative"
+                  key={product._id}
+                >
+                  <h4 className="position-absolute top-0 start-0">{index + 1}</h4>
+                  <div className="col-md-3 d-flex justify-content-center align-items-center">
+                    <img
+                      src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
+                      alt="product image"
                       style={{
-                        height: "120px",
-                        width: "25%",
+                        height: "300px",
+                        width: "300px",
+                        objectFit: "contain",
                       }}
-                    >
-                      <img
-                        src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product._id}`}
-                        alt="product image"
+                    />
+                  </div>
+                  <div className="col-md-9">
+                    <div>
+                      <h5 className="header_text">{product.name}</h5>
+                      <h5 className="">Category: {product?.category?.name}</h5>
+                      <p
                         style={{
-                          height: "100%",
-                          width: "100%",
-                          objectFit: "contain",
+                          margin: "0",
+                          lineHeight: "18px",
+                          textAlign: "justify",
                         }}
-                      />
+                      >
+                        description: {product.description}
+                      </p>
+                      <p style={{ margin: "5px 0", fontSize: "22px" }}>
+                        price: ${product.price}
+                      </p>
+                      <p style={{ margin: "0" }}>
+                        quantity: {product.quantity}
+                      </p>
+                      <p style={{ margin: "0" }}>
+                        shipping: {product.shipping ? "Yes" : "No"}
+                      </p>
+                      <p style={{ margin: "0" }}>
+                        createdAt: {product?.createdAt}
+                      </p>
+                      <p style={{ margin: "0" }}>
+                        updatedAt : {product?.updatedAt}
+                      </p>
                     </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        width: "70%",
-                      }}
-                    >
-                      <div>
-                        <h5>{product.name}</h5>
-                        <p style={{ margin: "0" }}>
-                          description: {product.description}
-                        </p>
-                        <p style={{ margin: "0" }}>price: ${product.price}</p>
-                        <p style={{ margin: "0" }}>
-                          quantity: {product.quantity}
-                        </p>
-                        <p style={{ margin: "0" }}>
-                          shipping: {product.shipping}
-                        </p>
-                        <p style={{ margin: "0" }}>
-                          category: {product?.category?.name}
-                        </p>
-                      </div>
-                      <div>
-                        <button className="btn btn-primary me-3">Edit</button>
-                        <button className="btn btn-danger">Delete</button>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           ) : (
             <div>loading...</div>
           )}
         </div>
-      </div>
+      </SidebarLayout>
     </Layout>
   );
 };

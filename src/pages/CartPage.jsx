@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { useAuth } from "../context/auth";
 import { useCart } from "../context/cart";
 import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { serverUrl } from "../serverUrl";
+import { toast } from "react-toastify";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -52,7 +52,7 @@ const CartPage = () => {
     // console.log(address, token, cart)
     try {
       const { data } = await axios.post(
-        "https://shopping-dot-com-server.onrender.com/api/v1/product/product-checkout",
+        `${serverUrl}/api/v1/product/product-checkout`,
         {
           totalPrice: totalPrice,
           address,
@@ -89,7 +89,7 @@ const CartPage = () => {
               <div className="row m-2 flex-row" key={product._id}>
                 <div className="col-md-4">
                   <img
-                    src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product._id}`}
+                    src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
                     className="card-img-top"
                     alt="product image"
                     style={{

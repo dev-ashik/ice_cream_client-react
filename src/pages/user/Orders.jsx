@@ -3,13 +3,14 @@ import Layout from "../../components/Layout/Layout";
 import MenuOfUsers from "../../components/Layout/MenuOfUsers";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { serverUrl } from "../../serverUrl";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   const getOrders = async () => {
     const { data } = await axios.get(
-      "https://shopping-dot-com-server.onrender.com/api/v1/product/orders"
+      `${serverUrl}/api/v1/product/orders`
     );
 
     if (data.success) {
@@ -44,7 +45,7 @@ const Orders = () => {
                       style={{ border: "1px solid black" }}
                     >
                       <img
-                        src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${item._id}`}
+                        src={`${serverUrl}/api/v1/product/product-photo/${item._id}`}
                         className="card-img-top m-2"
                         alt="product image"
                         style={{

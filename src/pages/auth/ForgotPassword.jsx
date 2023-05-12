@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
+import { serverUrl } from "../../serverUrl";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     // toast.success('Register Successful');
     try {
-      const res = await axios.post("https://shopping-dot-com-server.onrender.com/api/v1/auth/forgot-password", {
+      const res = await axios.post(`${serverUrl}/api/v1/auth/forgot-password`, {
         email,
         newPassword,
         question

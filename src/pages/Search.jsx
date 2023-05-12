@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
 import { useSearch } from "../context/search";
+import { serverUrl } from "../serverUrl";
 
 const Search = () => {
   const [values, setValues] = useSearch();
@@ -20,7 +21,7 @@ const Search = () => {
               <div className="col" key={_id}>
                 <div className="card h-100">
                   <img
-                    src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${_id}`}
+                    src={`${serverUrl}/api/v1/product/product-photo/${_id}`}
                     className="card-img-top"
                     alt="product image"
                     style={{

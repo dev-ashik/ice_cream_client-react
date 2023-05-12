@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import axios from "axios";
-import { toast } from "react-hot-toast";
 import { Select } from "antd";
 import { Option } from "antd/es/mentions";
 import { HiPhotograph } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
+import { serverUrl } from '../../serverUrl';
+import SidebarLayout from '../SidebarLayout/SidebarLayout';
+import { toast } from 'react-toastify';
 
 const UpdateProduct = () => {
     const [categories, setCategories] = useState([]);
@@ -25,7 +27,7 @@ const UpdateProduct = () => {
     const getSingleCategory = async () => {
         try {
           const { data } = await axios.get(
-            `https://shopping-dot-com-server.onrender.com/api/v1/product/products/${params.slug}`
+            `${serverUrl}/api/v1/product/products/${params.slug}`
           );
           if (data.success) {
             const {_id, name, photo, description, price, category, quantity, shipping} = data.product
@@ -49,7 +51,7 @@ const UpdateProduct = () => {
     const getAllCategory = async () => {
       try {
         const { data } = await axios.get(
-          "https://shopping-dot-com-server.onrender.com/api/v1/category/get-categories"
+          `${serverUrl}/api/v1/category/get-categories`
         );
         if (data.success) {
           setCategories(data?.categorys);
@@ -78,10 +80,10 @@ const UpdateProduct = () => {
         productData.append("shipping", shipping)
   
         const { data } = await axios.put(
-          `https://shopping-dot-com-server.onrender.com/api/v1/product/update-product/${id}`, productData
+          `${serverUrl}/api/v1/product/update-product/${id}`, productData
         );
         if (data?.success) {
-          toast.success(data.message)
+          toast.success("product Successfully updated")
           navigate('/dashboard/admin/products')
         } else {
           toast.error(data?.message)
@@ -100,7 +102,7 @@ const UpdateProduct = () => {
             return;
         }
         const { data } = await axios.delete(
-          `https://shopping-dot-com-server.onrender.com/api/v1/product/delete-product/${id}`
+          `${serverUrl}/api/v1/product/delete-product/${id}`
         );
         if (data?.success) {
           toast.success(data.message)
@@ -115,14 +117,10 @@ const UpdateProduct = () => {
     }
   return (
     <Layout title={"dashboard create product"}>
-      <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          <div className="col-md-9">
-            <h3>Update Product</h3>
-            <div className="m-1 w-75">
+      <SidebarLayout>
+      <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+            <h3 className='header_text'>Update Product</h3>
+            <div className="w-100">
               <Select
                 className="form-select mb-3"
                 onChange={(value) => setCategory(value)}
@@ -159,16 +157,18 @@ const UpdateProduct = () => {
                     <img
                       src={URL.createObjectURL(photo)}
                       alt="new product photo"
-                      height={"200"}
+                      height={"250"}
+                      width={"250"}
                       className="img img-responsive"
                     />
                   </div>
                 ) : (
                     <div className="text-center">
                     <img
-                      src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${id}`}
+                      src={`${serverUrl}/api/v1/product/product-photo/${id}`}
                       alt="old product photo"
-                      height={"200"}
+                      height={"250"}
+                      width={"250"}
                       className="img img-responsive"
                     />
                   </div>
@@ -228,17 +228,16 @@ const UpdateProduct = () => {
               </div>
 
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdateProduct}>Update product</button>
+                <button className="button_primary" onClick={handleUpdateProduct}>Update product</button>
               </div>
 
               <div className="mb-3">
-                <button className="btn btn-danger" onClick={handleDeleteProduct}>Delete product</button>
+                <button className="btn btn-danger" style={{padding: "7px 20px", fontSize: "20px"}} onClick={handleDeleteProduct}>Delete product</button>
               </div>
 
             </div>
           </div>
-        </div>
-      </div>
+      </SidebarLayout>
     </Layout>
   )
 }

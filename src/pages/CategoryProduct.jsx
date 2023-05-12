@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import { serverUrl } from '../serverUrl';
 
 const CategoryProduct = () => {
     const [products, setProducts] = useState([]);
@@ -10,7 +11,7 @@ const CategoryProduct = () => {
 
     const getProduct = async () => {
         try {
-            const {data} = await axios.get(`https://shopping-dot-com-server.onrender.com/api/v1/product/product-category/${param.slug}`)
+            const {data} = await axios.get(`${serverUrl}/api/v1/product/product-category/${param.slug}`)
 
             setProducts(data?.products);
             setCategory(data.category)
@@ -34,7 +35,7 @@ const CategoryProduct = () => {
               <div className="col" key={_id}>
                 <div className="card h-100">
                   <img
-                    src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${_id}`}
+                    src={`${serverUrl}/api/v1/product/product-photo/${_id}`}
                     className="card-img-top"
                     alt="product image"
                     style={{

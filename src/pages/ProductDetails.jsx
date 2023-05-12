@@ -6,7 +6,8 @@ import "../styles/pagesesStyles.css";
 import { BiCartAdd } from "react-icons/bi";
 import { BsFillEyeFill } from "react-icons/bs";
 import { useCart } from "../context/cart";
-import { toast } from "react-hot-toast";
+import { serverUrl } from "../serverUrl";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([]);
@@ -17,7 +18,7 @@ const ProductDetails = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `https://shopping-dot-com-server.onrender.com/api/v1/product/products/${slug}`
+        `${serverUrl}/api/v1/product/products/${slug}`
       );
       if (data.success) {
         setProduct(data.product);
@@ -31,7 +32,7 @@ const ProductDetails = () => {
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `https://shopping-dot-com-server.onrender.com/api/v1/product//related-product/${pid}/${cid}`
+        `${serverUrl}/api/v1/product//related-product/${pid}/${cid}`
       );
       if (data.success) {
         setRelatedProducts(data.products);
@@ -56,7 +57,7 @@ const ProductDetails = () => {
       <div className="productDetails_product">
         <div className="productDetails_image">
           <img
-            src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product?._id}`}
+            src={`${serverUrl}/api/v1/product/product-photo/${product?._id}`}
             className="card-img-top"
             alt="product image"
           />
@@ -100,7 +101,7 @@ const ProductDetails = () => {
           <div key={product._id} className="productDetails_related-products">
             <div className="productDetails_related-products-img">
               <img
-                src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product?._id}`}
+                src={`${serverUrl}/api/v1/product/product-photo/${product?._id}`}
                 className="card-img-top"
                 alt="product image"
               />
@@ -129,7 +130,10 @@ const ProductDetails = () => {
                       "cart",
                       JSON.stringify([...cart, product])
                     );
-                    toast.success("Item Added");
+                    toast.success("Item Added", {
+                      position: toast.POSITION.BOTTOM_RIGHT,
+                      autoClose: 2000,
+                    });
                   }}
                 >
                   <BiCartAdd />

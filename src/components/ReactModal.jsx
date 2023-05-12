@@ -36,7 +36,7 @@ export const ReactModal = ({children, modalIsOpen, setIsOpen}) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal}>close</button>
+        <button className="close-button" onClick={closeModal}>x</button>
         <div>
           {children}
         </div>
