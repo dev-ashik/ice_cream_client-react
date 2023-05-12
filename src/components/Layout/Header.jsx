@@ -9,10 +9,10 @@ import { GrFormClose } from "react-icons/gr";
 import { BsList } from "react-icons/bs";
 import { useAuth } from "../../context/auth";
 import { useCart } from "../../context/cart";
-import { toast } from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -94,6 +94,7 @@ const Header = () => {
                 {categories.length ? (
                   categories.map((category) => (
                     <Link
+                    key={category._id}
                       to={`/category/${category.slug}`}
                       className="dropdownItem"
                     >

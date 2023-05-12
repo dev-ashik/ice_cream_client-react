@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
 
 import '../../styles/AuthStyles.css';
+import { serverUrl } from "../../serverUrl";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
@@ -21,7 +22,7 @@ const Register = () => {
     // toast.success('Register Successful');
     try {
       const res = await axios.post(
-        "https://shopping-dot-com-server.onrender.com/api/v1/auth/register",
+        `${serverUrl}/api/v1/auth/register`,
         { name, email, password, phone, address, question }
       );
       if(res.data.success){

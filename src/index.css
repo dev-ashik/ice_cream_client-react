@@ -97,6 +97,25 @@ body {
   animation: pulse 1s ease-in-out infinite;
 }
 
+.close-button {
+  border: none;
+  font-size: 20px;
+  background-color: #7c5531;
+  height: 25px;
+  width: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 600;
+  position: absolute;
+  color: whitesmoke;
+  top: 5px;
+  right: 5px;
+  
+}
+
 @keyframes pulse {
   0% {
     opacity: 1;
@@ -107,6 +126,10 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.modalSubmitButton {
+  background-color: #7c5531;
 }
 
 /* ********************nav bar****************
@@ -482,10 +505,12 @@ nav {
 
 .footer .footer_top .footer_logo .spoon_logo_footer {
   font-size: 5rem;
+  color: #7c5531;
 }
 
 .footer .footer_top .footer_logo .iceCream_logo_footer {
   font-size: 5rem;
+  color: #7c5531;
 }
 
 .footer .footer_top .footer_links {
@@ -498,6 +523,7 @@ nav {
 .footer .footer_top .footer_links a {
   text-decoration: none;
   color: var(--primary-color);
+  color: #7c5531;
   /* padding: 10px; */
 }
 

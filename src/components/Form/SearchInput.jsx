@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../../styles/ComponentStyles.css';
 import { BsSearch } from "react-icons/bs";
+import { serverUrl } from "../../serverUrl";
 
 const SearchInput = () => {
     const [values, setValues] = useSearch()
@@ -13,7 +14,7 @@ const SearchInput = () => {
         e.preventDefault()
 
         try {
-            const {data} = await axios.get(`https://shopping-dot-com-server.onrender.com/api/v1/product/search/${values.keyword}`)
+            const {data} = await axios.get(`${serverUrl}/api/v1/product/search/${values.keyword}`)
 
             setValues({...values, results: data});
             navigate("/search")

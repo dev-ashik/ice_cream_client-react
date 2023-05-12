@@ -1,0 +1,54 @@
+/****************** adminDashboard start **************** */
+.adminDashboard-firstrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.adminDashboard-profileInfo {
+  position: relative;
+}
+
+.adminDashboard-profileInfo-img {
+  font-size: 10rem;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.adminDashboard-profileInfo,
+.adminDashboard-firstrow-users,
+.adminDashboard-firstrow-products,
+.adminDashboard-firstrow-orders {
+  box-shadow: 1px 1px 10px gray;
+  padding: 1rem;
+  min-height: 10rem;
+  min-width: 15rem;
+}
+
+.adminDashboard-profileInfo-edit_button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 30px !important;
+  width: 60px !important;
+  font-size: 30px;
+  color: gray;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminDashboard-profileInfo-editIcon svg {
+  font-size: 5px;
+  /* color: gray; */
+}
+
+.adminDashboard-firstrow-loading {
+  height: 50px;
+  width: 50px;
+}
+
+/******************** createCategory**************** */

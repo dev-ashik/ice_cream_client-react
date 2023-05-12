@@ -13,7 +13,7 @@ const review_data = [
     stars: 5,
   },
   {
-    id: 1,
+    id: 2,
     img: profile_2,
     name: "Karina Kapur",
     review:
@@ -21,7 +21,7 @@ const review_data = [
     stars: 5,
   },
   {
-    id: 1,
+    id: 3,
     img: profile_3,
     name: "Saruk Khan",
     review:
@@ -36,7 +36,7 @@ const CusomerReview = () => {
       <h4 className="text-center header_text">WHAT OUR CLIENTS SAYS</h4>
       <div className="review_card-section">
         {review_data.map((re) => (
-          <div className="review_card">
+          <div className="review_card" key={re.id}>
             <img src={re.img} alt="ice cream photo" />
             <div className="review_card-body">
               <h2 className="review_header">{re.name}</h2>

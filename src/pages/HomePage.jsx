@@ -5,7 +5,6 @@ import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/cart";
-import { toast } from "react-hot-toast";
 import { BiCartAdd } from "react-icons/bi";
 import { BsFillEyeFill } from "react-icons/bs";
 
@@ -13,12 +12,14 @@ import "../styles/PagesesStyles.css";
 
 import Carousel from "../components/Carousel/Carousel";
 import CusomerReview from "../components/CusomerReview/CusomerReview";
-import { icecream_bg, yellow_ice } from "../assets";
+import { icecream_bg, loading_1, yellow_ice } from "../assets";
 
 import "../styles/pagesesStyles.css";
 import Skeleton from "react-loading-skeleton";
 
 import home_small_girl from '../assets/ice-creams/home-small-girl.png';
+import { serverUrl } from "../serverUrl";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const [auth, setAuth] = useAuth();
@@ -40,7 +41,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get(
-        "https://shopping-dot-com-server.onrender.com/api/v1/product/products"
+        `${serverUrl}/api/v1/product/products`
       );
 
       if (data.success) {
@@ -55,7 +56,7 @@ const HomePage = () => {
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
-        "https://shopping-dot-com-server.onrender.com/api/v1/category/get-categories"
+        `${serverUrl}/api/v1/category/get-categories`
       );
       if (data.success) {
         setCategories(data.categorys);
@@ -64,6 +65,7 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
 
   useEffect(() => {
     getAllCategory();
@@ -94,7 +96,7 @@ const HomePage = () => {
     console.log("Filter product");
     try {
       const { data } = await axios.post(
-        "https://shopping-dot-com-server.onrender.com/api/v1/product/product-filters",
+        `${serverUrl}/api/v1/product/product-filters`,
         {
           checked,
           priceRange,
@@ -113,7 +115,7 @@ const HomePage = () => {
       {/* *****carocel***** */}
       <Carousel />
 
-      {/* *********recent item******* */}
+      {/* *********Our Product******* */}
       <div className="home_page-recent_product our_product">
         <h4 className="text-center header_text">OUR PRODUCT</h4>
 
@@ -124,7 +126,7 @@ const HomePage = () => {
                 {products?.slice(0, 6).map((product, index) => (
                   <div className="product_card" key={index}>
                     <img
-                      src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product._id}`}
+                      src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
                       alt="ice cream photo"
                     />
                     <div className="product_card-body">
@@ -153,7 +155,10 @@ const HomePage = () => {
                             "cart",
                             JSON.stringify([...cart, product])
                           );
-                          toast.success("Item Added");
+                          toast.success("Item Added", {
+                            position: toast.POSITION.BOTTOM_RIGHT,
+                            autoClose: 2000
+                          });
                         }}
                       >
                         <BiCartAdd />
@@ -167,7 +172,7 @@ const HomePage = () => {
                 {/* Loading */}
                 {Array(4)
                   .fill()
-                  .map((index) => (
+                  .map((data, index) => (
                     <div className="product_card" key={index}>
                       {/* for image */}
                       <Skeleton height={150} width={250} />
@@ -212,7 +217,7 @@ const HomePage = () => {
           <>
             {Array(4)
               .fill()
-              .map((index) => (
+              .map((data, index) => (
                 <div className="col" key={index} style={{ textAlign: "center" }}>
                   <Skeleton height={200} width={280} />
 
@@ -231,7 +236,7 @@ const HomePage = () => {
           <div className="col" key={index}>
             <div className="card h-100">
               <img
-                src={`https://shopping-dot-com-server.onrender.com/api/v1/product/product-photo/${product._id}`}
+                src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
                 className="card-img-top"
                 alt="product image"
               />
@@ -264,7 +269,10 @@ const HomePage = () => {
                         "cart",
                         JSON.stringify([...cart, product])
                       );
-                      toast.success("Item Added");
+                      toast.success("Item Added", {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                        autoClose: 2000
+                      });
                     }}
                   >
                     <BiCartAdd />

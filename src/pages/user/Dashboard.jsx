@@ -3,11 +3,13 @@ import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import MenuOfUsers from "../../components/Layout/MenuOfUsers";
 
+
 const Dashboard = () => {
   const [auth] = useAuth();
 
   return (
     <Layout title={"Dashboard"}>
+      
       <div className="container-fluid m-3 p-3">
         <div className="row">
           <div className="col-md-3">
@@ -22,6 +24,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
     </Layout>
   );
 };

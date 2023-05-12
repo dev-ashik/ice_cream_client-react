@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import axios from "axios";
-import { toast } from "react-hot-toast";
 import { Select } from "antd";
 import { Option } from "antd/es/mentions";
 import { HiPhotograph } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { serverUrl } from "../../serverUrl";
+import SidebarLayout from "../SidebarLayout/SidebarLayout";
+import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -23,7 +25,7 @@ const CreateProduct = () => {
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
-        "https://shopping-dot-com-server.onrender.com/api/v1/category/get-categories"
+        `${serverUrl}/api/v1/category/get-categories`
       );
       if (data.success) {
         setCategories(data?.categorys);
@@ -51,7 +53,7 @@ const CreateProduct = () => {
       productData.append("shipping", shipping)
 
       const { data } = await axios.post(
-        "https://shopping-dot-com-server.onrender.com/api/v1/product/create-product", productData
+        `${serverUrl}/api/v1/product/create-product`, productData
       );
       if (data?.success) {
         toast.success(data.message)
@@ -69,13 +71,9 @@ const CreateProduct = () => {
 
   return (
     <Layout title={"dashboard create product"}>
-      <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          <div className="col-md-9">
-            <h3>Create Product</h3>
+      <SidebarLayout>
+      <div className="w-100 d-flex flex-column justify-content-center align-items-center">
+            <h3 className="header_text">Create Product</h3>
             <div className="m-1 w-75">
               <Select
                 className="form-select mb-3"
@@ -186,13 +184,12 @@ const CreateProduct = () => {
               </div>
 
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCrateProduct}>create product</button>
+                <button className="button_primary" onClick={handleCrateProduct}>create product</button>
               </div>
 
             </div>
           </div>
-        </div>
-      </div>
+      </SidebarLayout>
     </Layout>
   );
 };
