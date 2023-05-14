@@ -8,6 +8,9 @@ const MenuOfUsers = () => {
         <NavLink to="/dashboard/user/profile" className="list-group-item">
           Profile
         </NavLink>
+        <NavLink to="/dashboard/user/opinion" className="list-group-item">
+        You valuable opinion or report
+        </NavLink>
         <NavLink to="/dashboard/user/orders" className="list-group-item">
           Orders
         </NavLink>

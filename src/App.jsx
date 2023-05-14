@@ -33,6 +33,7 @@ import AdminOrders from "./pages/admin/AdminOrders";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import CheckOut from "./pages/user/CheckOut";
+import UserOpinion from "./pages/user/UserOpinion";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -57,6 +58,7 @@ function App() {
                 <Route path="user" element={<Dashboard />} />
                 <Route path="user/orders" element={<Orders />} />
                 <Route path="user/profile" element={<Profile />} />
+                <Route path="user/opinion" element={<UserOpinion />} />
                 <Route path="user/checkout" element={<CheckOut />} />
               </Route>
               <Route path="/dashboard" element={<PrivetAdminroute />}>
