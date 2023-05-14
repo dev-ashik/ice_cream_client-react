@@ -17,7 +17,7 @@ const CreateCategory = () => {
   const [categoryName, setCategoryName] = useState("");
   const [updatedCategoryName, setUpdatedCategoryName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // get all categories
   const getAllCategory = async () => {
@@ -60,7 +60,7 @@ const CreateCategory = () => {
   };
 
   const handleEditCategory = (category) => {
-    setIsOpen(true);
+    setModalIsOpen(true);
     setUpdatedCategoryName(category.name);
     setSelectedCategory(category);
   };
@@ -84,7 +84,7 @@ const CreateCategory = () => {
       toast.error("someting went wrong");
     }
 
-    setIsOpen(false);
+    setModalIsOpen(false);
   };
 
   const handleDeleteCategory = async (category) => {
@@ -102,7 +102,7 @@ const CreateCategory = () => {
       toast.error("someting went wrong");
     }
 
-    setIsOpen(false);
+    setModalIsOpen(false);
   };
 
   // console.log(categories)
@@ -154,7 +154,7 @@ const CreateCategory = () => {
               </tbody>
             </table>
           </div>
-          <ReactModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}>
+          <ReactModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
             <CategoryForm
               categoryName={updatedCategoryName}
               setCategoryName={setUpdatedCategoryName}

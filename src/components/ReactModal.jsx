@@ -18,15 +18,15 @@ const customStyles = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
-export const ReactModal = ({children, modalIsOpen, setIsOpen}) => {
+export const ReactModal = ({children, modalIsOpen, setModalIsOpen}) => {
 
   function openModal() {
-    setIsOpen(true);
+    setModalIsOpen(true);
   }
 
 
   function closeModal() {
-    setIsOpen(false);
+    setModalIsOpen(false);
   }
   return (
     <div>

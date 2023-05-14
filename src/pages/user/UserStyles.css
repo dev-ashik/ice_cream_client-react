@@ -102,6 +102,23 @@
 }
 
 
+
+/* user opinion */
+.userOpinion_page {
+    min-height: 100vh;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    background-image: linear-gradient(to bottom right, #e0c69a9d, #a592717e),
+      url("../../assets/ice-creams/about_contact-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    padding: 3rem 0;
+  }
+
 .contact_form form {
     display: flex;
     flex-direction: column;
@@ -124,4 +141,39 @@
     border: none;
     outline: none;
     border-radius: 10px;
+  }
+
+  .apologize_window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(133, 133, 133, 0.493);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .apologize_window-content {
+    position: relative;
+  }
+
+  .apologize_window p {
+    color: rgb(77, 77, 77);
+    max-width: 20rem;
+    background-image: linear-gradient(to bottom right, #e0c69a, #a59271);
+    padding: 3rem;
+    font-size: 21px;
+  }
+
+  .apologize_window-close {
+    position: absolute;
+    top: -18px;
+    right: 2px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
   }
