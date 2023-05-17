@@ -34,6 +34,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import CheckOut from "./pages/user/CheckOut";
 import UserOpinion from "./pages/user/UserOpinion";
+import Faq from "./pages/Faq";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -82,6 +83,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/policy" element={<Policy />} />
+              <Route path="/faq" element={<Faq />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>

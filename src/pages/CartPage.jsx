@@ -182,7 +182,7 @@ const CartPage = () => {
             ) : (
               <>
                 <button
-                  className="btn btn-outline-warning"
+                  className="button_primary"
                   to={"/dashboard/user/profile"}
                   onClick={() =>
                     navigate("/login", {

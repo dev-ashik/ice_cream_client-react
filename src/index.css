@@ -608,6 +608,14 @@ nav {
 
 /* ********************contact page****************
 ********************************************* */
+.contact_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
 .contact_image img {
   height: 30rem;
   width: 100%;
@@ -618,11 +626,40 @@ nav {
 ********************************************* */
 .register {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  height: 70vh;
+  /* height: 70vh; */
   flex-direction: column;
+
+
+  box-shadow: 1px 1px 10px gray;
+  max-width: 25rem;
+  margin: 2rem auto;
+  padding: 2rem;
 }
+
+.register form {
+  width: 100%;
+}
+
+.register form input {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid var(--primary-color);
+
+  outline: none;
+}
+
+.register form input:focus,
+.register form input:active {
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-color: lightgray;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
 
 @media screen and (max-width: 768px) {
   nav .search_bar {

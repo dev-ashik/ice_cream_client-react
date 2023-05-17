@@ -32,10 +32,18 @@ const Orders = () => {
 
             <div className="user_orders-each_time_order">
               {orders.map((order) => (
-                <div key={order._id} className="m-2 p-2">
+                <div
+                  key={order._id}
+                  className="m-2 mb-4 p-2 "
+                  style={{
+                    boxShadow: "1px 1px 10px gray",
+                    borderRadius: "20px",
+                  }}
+                >
                   <div>
-                    {order.products.map((item) => (
+                    {order.products.map((item, index) => (
                       <Link
+                        key={index}
                         to={`/product/${item.slug}`}
                         style={{
                           // border: "1px solid black",
@@ -66,7 +74,12 @@ const Orders = () => {
                   </div>
 
                   <div className="user_orders-each_time_order-info">
-                    <p>address: {order.address}</p>
+                    <p>
+                      address:{" "}
+                      {order.address.map((item, index) => (
+                        <span key={index}>{item} </span>
+                      ))}
+                    </p>
                     <p>payment: {order.payment}</p>
                     <p>
                       Time: {new Date(order.createdAt).getDate()}-

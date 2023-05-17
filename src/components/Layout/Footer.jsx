@@ -19,7 +19,7 @@ const Footer = () => {
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/policy">Privacy Policy</Link>
-            <Link to="/">FAQ</Link>
+            <Link to="/faq">FAQ</Link>
         </div>
         <div className="footer_contact">
           <a href=""><AiFillPhone/>Phone: +86 0000 000 0000</a>

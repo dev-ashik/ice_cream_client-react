@@ -41,7 +41,7 @@ const Products = () => {
               {products?.map((product, index) => (
                 <Link
                   to={`/dashboard/admin/products/${product.slug}`}
-                  className="row mb-3 text-decoration-none text-black border border-primary p-3 position-relative"
+                  className="row mb-3 text-decoration-none text-black allProduct_eachproduct p-3 position-relative"
                   key={product._id}
                 >
                   <h4 className="position-absolute top-0 start-0">{index + 1}</h4>
