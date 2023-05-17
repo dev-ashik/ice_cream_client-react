@@ -60,11 +60,8 @@ const AdminOrders = () => {
       console.log(error);
       setLoadingStatus(false);
     }
-
-    // console.log(value, orderId)
   };
 
-  console.log(allOrders);
   return (
     <Layout title={"dashboard all orders"}>
       <SidebarLayout>
@@ -122,7 +119,9 @@ const AdminOrders = () => {
                         </td>
                       </tr>
                       <tr>
-                        <th colspan="6">address: {ord.address}</th>
+                        <th colSpan="6">address: {ord.address?.map((add, index) => (
+                          <span key={index}>{add} </span>
+                        ))}</th>
                       </tr>
                     </tbody>
                   </table>

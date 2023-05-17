@@ -7,11 +7,13 @@ import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 import { serverUrl } from "../../serverUrl";
 import { toast } from "react-toastify";
+import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +46,7 @@ const Login = () => {
   return (
     <Layout title="Register">
       <div className="register text-center">
-        <h2>Login form</h2>
+        <h4 className="header_text">Login form</h4>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
@@ -57,9 +59,9 @@ const Login = () => {
               required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 d-flex">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter Your Password"
@@ -67,16 +69,18 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+             <button type="button" className="border-0 bg-transparent" onClick={()=>setShowPassword(showPassword => !showPassword)}>{showPassword ? <BsFillEyeSlashFill/> : <BsFillEyeFill/>}</button>
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="button_primary w-100">
             Login
           </button>
+          <p className="mt-2">Create a new Account <Link to={`/register`} style={{color: "#3d2815"}}>Register</Link></p>
           <div className="mt-2">
             <Link
               to="/forgot-password"
               type="button"
-              className="btn btn-primary"
+              style={{color: "#7c5531"}}
             >
               Forgot password
             </Link>

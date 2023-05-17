@@ -5,6 +5,7 @@ import { GiSpoon } from "react-icons/gi";
 import { HiShoppingCart } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiSearchAlt2 } from "react-icons/bi";
+import { BsFillPersonFill } from "react-icons/bs";
 import { GrFormClose } from "react-icons/gr";
 import { BsList } from "react-icons/bs";
 import { useAuth } from "../../context/auth";
@@ -94,7 +95,7 @@ const Header = () => {
                 {categories.length ? (
                   categories.map((category) => (
                     <Link
-                    key={category._id}
+                      key={category._id}
                       to={`/category/${category.slug}`}
                       className="dropdownItem"
                     >
@@ -127,6 +128,7 @@ const Header = () => {
               <li className="navItem navProfile">
                 <span className="navLink navProfile_title">
                   {auth?.user?.name}
+                  {/* <BsFillPersonFill/> */}
                   <IoIosArrowDown />
                 </span>
                 <span className="navProfile_item">

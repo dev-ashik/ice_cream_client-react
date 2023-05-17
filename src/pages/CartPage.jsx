@@ -8,6 +8,8 @@ import axios from "axios";
 import { serverUrl } from "../serverUrl";
 import { toast } from "react-toastify";
 
+import "./UserStyles.css";
+
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
@@ -58,7 +60,7 @@ const CartPage = () => {
           address,
           token,
           products: cart,
-          auth: auth
+          auth: auth,
         }
       );
 
@@ -66,7 +68,7 @@ const CartPage = () => {
         toast.success(data.message);
         localStorage.removeItem("cart");
         setCart([]);
-        navigate('/dashboard/user/orders')
+        navigate("/dashboard/user/orders");
       } else {
         toast.error("something is wrong");
       }
@@ -78,34 +80,32 @@ const CartPage = () => {
 
   return (
     <Layout>
-      <div className="container">
-        <div className="row">
-          <h4>hello {auth?.token && auth?.user?.name}</h4>
-          {cart?.length < 1 && <h4>cart is empty</h4>}
-        </div>
+      <div className="container pt-4">
         <div className="row">
           <div className="col-md-8">
+            {cart.length < 1 && (
+              <div className="cart_empty_message">
+                <h4>cart is empty</h4>
+              </div>
+            )}
             {cart?.map((product) => (
-              <div className="row m-2 flex-row" key={product._id}>
-                <div className="col-md-4">
+              <div
+                className="cart_page-each_product row m-2 mb-4 flex-row shadow"
+                key={product._id}
+              >
+                <div className="col-md-4 p-0">
                   <img
                     src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
                     className="card-img-top"
                     alt="product image"
-                    style={{
-                      height: "200px",
-                      objectFit: "contain",
-                      backgroundImage:
-                        "linear-gradient(120deg, #d6e6ff 0%, #cfeffd 100%)",
-                    }}
                   />
                 </div>
                 <div className="col-md-8">
-                  <h4>{product.name}</h4>
+                  <h4 className="header_text">{product.name}</h4>
                   <p>{product.description.substring(0, 50)}...</p>
                   <p>Price: {product.price}</p>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger mb-2"
                     onClick={() => removeCartItem(product._id)}
                   >
                     Remove
@@ -115,22 +115,47 @@ const CartPage = () => {
             ))}
           </div>
           <div className="col-md-4">
-            <h4>Cart Summary</h4>
+            <h4 className="header_text">Cart Summary</h4>
             <hr />
-            <p> Total ---------- ${totalPrice}</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>-----</th>
+                  <th>price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart?.map((product, index) => (
+                  <tr key={index}>
+                    <td> {product.name} </td>
+                    <td>-----</td>
+                    <td>${product.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Total</th>
+                  <th>-----</th>
+                  <th>${totalPrice}</th>
+                </tr>
+              </tfoot>
+            </table>
+
+            <br />
+            {/* {cart?.map((product, index)=> (
+              <>
+              <p> {product.name} ---------- ${product.price}</p>
+              </>
+            ))}
+            ______________________________________
+            <p> Total ---------- ${totalPrice}</p> */}
 
             {auth?.token ? (
               <>
                 <div className="mb-3">
-                  <h4>Current address</h4>
-                  <input
-                    type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                  <br />
-
-                  <StripeCheckout
+                  {/* <StripeCheckout
                     stripeKey="pk_test_51KOcnlE6mLAE4h3PUxtfXb1ZSl4sQiPAd0AFk0dWetSkd0eSfTfSKHsd8eupNzwhnK4ekgz5SP6xilxSj5de4Zdq00eRzUaBDp"
                     label="checkout"
                     name="Pay With Credit Card"
@@ -139,13 +164,25 @@ const CartPage = () => {
                     amount={totalPrice * 100}
                     description={`Your total is ${totalPrice}`}
                     token={handlePayNow}
-                  />
+                  /> */}
+
+                  {cart?.length > 0 ? (
+                    <Link
+                      to="/dashboard/user/checkout"
+                      className="button_primary"
+                      style={{ textDecoration: "none" }}
+                    >
+                      Checkout
+                    </Link>
+                  ) : (
+                    <button className="button_disable">Checkout</button>
+                  )}
                 </div>
               </>
             ) : (
               <>
                 <button
-                  className="btn btn-outline-warning"
+                  className="button_primary"
                   to={"/dashboard/user/profile"}
                   onClick={() =>
                     navigate("/login", {

@@ -2,26 +2,38 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import "./UserStyles.css";
 import StripeCheckout from "react-stripe-checkout";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { serverUrl } from "../../serverUrl";
+import { useCart } from "../../context/cart";
+import { useAuth } from "../../context/auth";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [cart, setCart] = useCart();
+  const [auth, setAuth] = useAuth();
+  const [name, setName] = useState(auth.user.name);
+  const [phone, setPhone] = useState(auth.user.phone);
   const [country, setCountry] = useState("");
   const [provience, setProvience] = useState("");
   const [city, setCity] = useState("");
   const [road, setRoad] = useState("");
   const [houseNumber, setHouseNumber] = useState("");
   const totalPrice = 20;
+  const navigate = useNavigate();
 
+
+  console.log(auth.user)
   const handlePayNow = async (token) => {
     // console.log(address, token, cart)
     try {
       const { data } = await axios.post(
         `${serverUrl}/api/v1/product/product-checkout`,
         {
-          totalPrice: totalPrice,
-          address: [houseNumber, road, city, provience, country],
+          name,
           phone: phone,
+          address: [houseNumber, road, city, provience, country],
+          totalPrice: totalPrice,
           token,
           products: cart,
           auth: auth,
@@ -34,7 +46,7 @@ const CheckOut = () => {
         setCart([]);
         navigate("/dashboard/user/orders");
       } else {
-        toast.error("something is wrong");
+        toast.error("something is wrong. payment is not successful");
       }
     } catch (error) {
       console.log(error);
@@ -50,11 +62,13 @@ const CheckOut = () => {
             type="text"
             placeholder="Name"
             onChange={(e) => setName(e.target.value)}
+            value={name}
           />
           <input
             type="Phone"
             placeholder="Phone number"
             onChange={(e) => setPhone(e.target.value)}
+            value={phone}
           />
           <input
             type="address"

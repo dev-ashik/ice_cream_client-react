@@ -7,11 +7,13 @@ import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 import { serverUrl } from "../../serverUrl";
 import { toast } from "react-toastify";
+import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [question, setQuestion] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ const ForgotPassword = () => {
       const res = await axios.post(`${serverUrl}/api/v1/auth/forgot-password`, {
         email,
         newPassword,
-        question
+        question,
       });
       if (res && res.data.success) {
         toast.success(res.data.message);
@@ -38,8 +40,8 @@ const ForgotPassword = () => {
   return (
     <Layout title="Forgot password">
       <div className="register text-center">
-        <h2>Reset Password</h2>
-        <form onSubmit={handleSubmit} >
+        <h4 className="header_text">Reset Password</h4>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
               type="email"
@@ -51,9 +53,9 @@ const ForgotPassword = () => {
               required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 d-flex">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter Your New Password"
@@ -61,6 +63,7 @@ const ForgotPassword = () => {
               onChange={(e) => setNewPassword(e.target.value)}
               required
             />
+            <button type="button" className="border-0 bg-transparent" onClick={()=>setShowPassword(showPassword => !showPassword)}>{showPassword ? <BsFillEyeSlashFill/> : <BsFillEyeFill/>}</button>
           </div>
           <div className="mb-3">
             <input
@@ -74,14 +77,11 @@ const ForgotPassword = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="button_primary w-100">
             reset password
           </button>
           <div className="mt-2">
-            <Link
-              to="/login"
-              className=""
-            >
+            <Link to="/login" style={{ color: "#3d2815" }}>
               go to login
             </Link>
           </div>
