@@ -51,6 +51,14 @@ const ProductDetails = () => {
   // console.log(product)
   // console.log(relatedProducts)
 
+  // Scroll to top
+  const handleSeeProduct = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
   return (
     <Layout>
       <h4 className="text-center header_text">Product Details</h4>
@@ -72,7 +80,7 @@ const ProductDetails = () => {
 
           <div className="productDetails_content-product_price">
             <h2 className="productDetails_content-product_priviosPrice">
-              ${product?.price - 7}
+              {product?.price && `$${product?.price + 7}`}
             </h2>
             <h2 className="productDetails_content-product_currentPrice">
               ${product?.price}
@@ -118,7 +126,9 @@ const ProductDetails = () => {
               <div className="productDetails_related-products-content-footer">
                 <Link
                   to={`/product/${product.slug}`}
+                  onClick={handleSeeProduct}
                   className="button_primary"
+
                 >
                   <BsFillEyeFill />
                 </Link>

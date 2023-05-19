@@ -88,10 +88,10 @@ const CartPage = () => {
                 <h4>cart is empty</h4>
               </div>
             )}
-            {cart?.map((product) => (
+            {cart?.map((product, index) => (
               <div
                 className="cart_page-each_product row m-2 mb-4 flex-row shadow"
-                key={product._id}
+                key={index}
               >
                 <div className="col-md-4 p-0">
                   <img

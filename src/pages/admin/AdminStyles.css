@@ -2,19 +2,10 @@
 .adminDashboard-firstrow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
+  
   flex-wrap: wrap;
   gap: 20px;
-}
-
-.adminDashboard-profileInfo {
-  position: relative;
-}
-
-.adminDashboard-profileInfo-img {
-  font-size: 10rem;
-  border: 1px solid black;
-  margin-bottom: 5px;
 }
 
 .adminDashboard-profileInfo,
@@ -25,6 +16,16 @@
   padding: 1rem;
   min-height: 10rem;
   min-width: 15rem;
+}
+
+.adminDashboard-profileInfo {
+  position: relative;
+}
+
+.adminDashboard-profileInfo-img {
+  font-size: 10rem;
+  border: 1px solid black;
+  margin-bottom: 5px;
 }
 
 .adminDashboard-profileInfo-edit_button {
@@ -49,6 +50,10 @@
 .adminDashboard-firstrow-loading {
   height: 50px;
   width: 50px;
+}
+
+.adminDashboard-firstrow-users {
+  background-color: rgb(56, 117, 98);
 }
 
 /******************** createCategory**************** */

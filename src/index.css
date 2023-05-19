@@ -503,19 +503,43 @@ nav {
 
 .footer {
   color: var(--primary-color);
-  background: #000000;
-  background-image: linear-gradient(120deg, #c0ae90 0%, #bbaa8d 100%);
-
+  background-image: linear-gradient(to bottom, #c0ae90d8 0%, #bbaa8d75 100%);
   position: relative;
+
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  
+}
+
+.footer_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  z-index: -1;
 }
 
 .footer .footer_top {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 2rem;
   flex-wrap: wrap;
+  
 
+  z-index: 2;
+
+  /* background-image: linear-gradient(to bottom right, #e0c69a9d, #a592717e),
+    url("./assets/ice-creams/footer bg.jpg"); */
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 1rem;
+  margin-bottom: 3rem;
 }
 
 .footer .footer_top .footer_logo {
@@ -535,45 +559,36 @@ nav {
   color: #7c5531;
 }
 
+.footer .footer_section_header {
+  font-size: 20px;
+  font-weight: 500;
+  color: #3d2815;
+}
+
 .footer .footer_top .footer_links {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: center; */
   gap: 10px;
 }
 
 .footer .footer_top .footer_links a {
   text-decoration: none;
-  color: var(--primary-color);
-  color: #7c5531;
-  /* padding: 10px; */
+  color: var(--secondary-color);
 }
 
 .footer .footer_top .footer_links a:hover {
-  color: #ffefba;
+  color: #7c7250;
 }
 
-.footer_down {
-  background-image: linear-gradient(
-    120deg,
-    rgba(163, 148, 122, 0.725) 00%,
-    #968870 0%
-  );
-  padding: 1rem;
-}
-
-.footer_down {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .footer_contact {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 0.5rem;
+  
 }
 
 .footer_contact a {
@@ -593,6 +608,61 @@ nav {
 .footer_contact a svg {
   font-size: 20px;
 }
+
+.footer .footer_contact small {
+  font-size: 18px;
+  color: var(--secondary-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer .footer_contact small svg {
+  font-size: 20px;
+}
+
+.footer_social_links-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer_social_links a svg {
+  color: var(--secondary-color);
+  font-size: 40px;
+  transition: all .2s ease-in-out;
+}
+
+.footer_social_links a:hover svg {
+  transform: scale(1.09);
+}
+
+
+
+.footer_down {
+  background-image: linear-gradient(
+    120deg,
+    #a3947a5e 00%,
+    #96887042 0%
+  );
+  padding: 1rem;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer_down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* 
 .footer small {
   text-align: center;
@@ -631,7 +701,6 @@ nav {
   /* height: 70vh; */
   flex-direction: column;
 
-
   box-shadow: 1px 1px 10px gray;
   max-width: 25rem;
   margin: 2rem auto;
@@ -659,7 +728,6 @@ nav {
   background-color: lightgray;
   border-bottom: 2px solid var(--secondary-color);
 }
-
 
 @media screen and (max-width: 768px) {
   nav .search_bar {
