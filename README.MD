@@ -1,6 +1,6 @@
 ## site photo
 
-![name-of-you-image](./src/assets/shopping.com.png)
+![name-of-you-image](./src/assets/sugar-cone-corner_landingPage.png)
 
 # client site
 

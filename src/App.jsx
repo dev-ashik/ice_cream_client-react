@@ -35,12 +35,14 @@ import { ProSidebarProvider } from "react-pro-sidebar";
 import CheckOut from "./pages/user/CheckOut";
 import UserOpinion from "./pages/user/UserOpinion";
 import Faq from "./pages/Faq";
+import { ProductsdataProvider } from "./context/productsdata";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <AuthProvider>
+      <ProductsdataProvider>
       <SearchProvider>
         <CartProvider>
           <BrowserRouter>
@@ -89,6 +91,7 @@ function App() {
           </BrowserRouter>
         </CartProvider>
       </SearchProvider>
+      </ProductsdataProvider>
     </AuthProvider>
   );
 }

@@ -1,22 +1,24 @@
 .sidebar-layout {
   display: flex;
+
+  min-height: 100vh;
 }
 
 .sidebar-layout_sidebar {
-  width: 20rem;
-  min-height: 100%;
+  /* width: 20rem; */
+  height: inherit;
   background-image: linear-gradient(to bottom, #dacbb2e3, #ccc0acf5);
-  transition: all 0.3s ease-in-out;
 
-  position: absolute;
-  /* min-height: 100vh; */
+  transition: all 0.3s ease-in-out;
   z-index: 4;
 }
 
 .sidebar-layout_sidebar-collaps {
   width: 3rem;
+}
 
-  transition: all 0.3s ease-in-out;
+.sidebar-layout_sidebar-expand {
+  width: 20rem;
 }
 
 .sidebar-layout_sidebar-nav {
@@ -68,12 +70,13 @@
 .sidebar-layout_content {
   width: 100%;
   padding: 1rem;
-  margin-left: 3rem;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+
+  overflow-y: scroll;
 }
 
 .sidebar-layout_content-collaps {

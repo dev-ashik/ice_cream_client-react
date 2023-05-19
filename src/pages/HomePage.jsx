@@ -17,19 +17,24 @@ import { icecream_bg, loading_1, yellow_ice } from "../assets";
 import "../styles/pagesesStyles.css";
 import Skeleton from "react-loading-skeleton";
 
-import home_small_girl from '../assets/ice-creams/home-small-girl.png';
+import home_small_girl from "../assets/ice-creams/home-small-girl.png";
 import { serverUrl } from "../serverUrl";
 import { toast } from "react-toastify";
+import { useProductdata } from "../context/productsdata";
 
 const HomePage = () => {
   const [auth, setAuth] = useAuth();
   // console.log(auth)
   const [loading, setLoading] = useState(true);
+  const [count, setCount] = useState(12);
   const [products, setProducts] = useState([]);
+  const [recentProducts, setRecentProducts] = useState([]);
+  const [oldProducts, setOldProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [priceRange, setPriceRange] = useState([]);
   const [cart, setCart] = useCart();
+  const [productdata, setProductdata] = useProductdata();
 
   // useEffect(()=>{
   //   setTimeout(()=>{
@@ -38,19 +43,44 @@ const HomePage = () => {
   // }, [])
 
   // get all products
-  const getAllProducts = async () => {
-    try {
-      const { data } = await axios.get(
-        `${serverUrl}/api/v1/product/products`
-      );
+  // const getAllProducts = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${serverUrl}/api/v1/product/products`
+  //     );
 
-      if (data.success) {
-        setProducts(data.products);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  //     if (data.success) {
+  //       setProducts(data.products);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // set resent products
+  const handleRecentProducts = () => {
+    const result = productdata?.products?.slice(0, 6);
+    setRecentProducts(result);
   };
+  useEffect(() => {
+    handleRecentProducts();
+  }, [productdata]);
+
+  // set old products
+  const handleOldProducts = () => {
+    const result = productdata?.products?.slice(6, 12);
+    setOldProducts(result);
+  };
+
+  const handleSeemoreProduct = () => {
+    const result = productdata?.products?.slice(6, count + 6);
+    setCount((count) => count + 6);
+    setOldProducts(result);
+  };
+
+  useEffect(() => {
+    handleOldProducts();
+  }, [productdata]);
 
   // get all categories
   const getAllCategory = async () => {
@@ -66,19 +96,18 @@ const HomePage = () => {
     }
   };
 
+  // useEffect(() => {
+  //   getAllCategory();
+  //   if (!checked.length || !priceRange.length) {
+  //     getAllProducts();
+  //   }
+  // }, [checked.length, priceRange.length]);
 
-  useEffect(() => {
-    getAllCategory();
-    if (!checked.length || !priceRange.length) {
-      getAllProducts();
-    }
-  }, [checked.length, priceRange.length]);
-
-  useEffect(() => {
-    if (checked.length || priceRange.length) {
-      filterProduct();
-    }
-  }, [checked, priceRange]);
+  // useEffect(() => {
+  //   if (checked.length || priceRange.length) {
+  //     filterProduct();
+  //   }
+  // }, [checked, priceRange]);
 
   // filter category
   const handleFilterCategory = (value, id) => {
@@ -110,6 +139,8 @@ const HomePage = () => {
   };
 
   // console.log(products);
+  // console.log(oldProducts);
+  // console.log(count);
   return (
     <Layout title={"all products best offers"}>
       {/* *****carocel***** */}
@@ -117,13 +148,13 @@ const HomePage = () => {
 
       {/* *********Our Product******* */}
       <div className="home_page-recent_product our_product">
-        <h4 className="text-center header_text">OUR PRODUCT</h4>
+        <h4 className="text-center header_text">OUR RECENT PRODUCT</h4>
 
         <div>
           <div className="product_card-section">
-            {products.length > 0 ? (
+            {productdata.success ? (
               <>
-                {products?.slice(0, 6).map((product, index) => (
+                {recentProducts?.map((product, index) => (
                   <div className="product_card" key={index}>
                     <img
                       src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
@@ -157,7 +188,7 @@ const HomePage = () => {
                           );
                           toast.success("Item Added", {
                             position: toast.POSITION.BOTTOM_RIGHT,
-                            autoClose: 2000
+                            autoClose: 2000,
                           });
                         }}
                       >
@@ -175,7 +206,11 @@ const HomePage = () => {
                   .map((data, index) => (
                     <div className="product_card" key={index}>
                       {/* for image */}
-                      <Skeleton height={150} width={250} />
+                      <Skeleton
+                        height={220}
+                        width={220}
+                        style={{ borderRadius: "100%" }}
+                      />
 
                       <br />
                       <div className="product_card-body">
@@ -213,12 +248,16 @@ const HomePage = () => {
       {/*  extra */}
       <h4 className="text-center header_text">Some of our BEST products</h4>
       <div className="best_products row row-cols-1 row-cols-md-3 g-4">
-        {products.length < 1 && (
+        {!productdata.success && (
           <>
             {Array(4)
               .fill()
               .map((data, index) => (
-                <div className="col" key={index} style={{ textAlign: "center" }}>
+                <div
+                  className="col"
+                  key={index}
+                  style={{ textAlign: "center" }}
+                >
                   <Skeleton height={200} width={280} />
 
                   <Skeleton
@@ -232,8 +271,8 @@ const HomePage = () => {
           </>
         )}
 
-        {products?.slice(7, 12).map((product, index) => (
-          <div className="col" key={index}>
+        {oldProducts?.map((product, index) => (
+          <div className="col old_product-card" key={index}>
             <div className="card h-100">
               <img
                 src={`${serverUrl}/api/v1/product/product-photo/${product._id}`}
@@ -271,7 +310,7 @@ const HomePage = () => {
                       );
                       toast.success("Item Added", {
                         position: toast.POSITION.BOTTOM_RIGHT,
-                        autoClose: 2000
+                        autoClose: 2000,
                       });
                     }}
                   >
@@ -282,6 +321,19 @@ const HomePage = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "20px",
+        }}
+      >
+        {count < productdata.quantity && (
+          <button className="button_primary" onClick={handleSeemoreProduct}>
+            See more
+          </button>
+        )}
       </div>
 
       {/* advertasment */}
