@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import "./UserStyles.css";
 import StripeCheckout from "react-stripe-checkout";
@@ -19,8 +19,25 @@ const CheckOut = () => {
   const [city, setCity] = useState("");
   const [road, setRoad] = useState("");
   const [houseNumber, setHouseNumber] = useState("");
-  const totalPrice = 20;
+
+  const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
+
+  // calculate total price
+  const calculateTotalPrice = () => {
+    try {
+      let total = 0;
+      cart.map((product) => (total += product.price));
+      setTotalPrice(total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [cart]);
+
+
 
 
   console.log(auth.user)

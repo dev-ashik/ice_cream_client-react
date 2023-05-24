@@ -31,7 +31,7 @@ const Orders = () => {
             <h4 className="header_text">All orders</h4>
 
             <div className="user_orders-each_time_order">
-              {orders.map((order) => (
+              {orders.reverse().map((order) => (
                 <div
                   key={order._id}
                   className="m-2 mb-4 p-2 "
