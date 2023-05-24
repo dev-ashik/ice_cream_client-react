@@ -86,7 +86,7 @@ const SidebarLayout = ({ children }) => {
                 expand && <span>All Order</span>
             }
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/dashboard/admin/users"
             className="sidebar-layout_sidebar-item"
           >
@@ -94,7 +94,7 @@ const SidebarLayout = ({ children }) => {
             {
                 expand && <span>Users</span>
             }
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
       <div
