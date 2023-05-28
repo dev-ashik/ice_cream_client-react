@@ -74,7 +74,7 @@ const QuestionSection = ({data}) => {
 
   return (
     <div className="eachQuestion_section">
-      <div className="eachQuestion_section-close">{showAnswer ? <AiOutlineMinus /> : <AiOutlinePlus />}</div>
+      <div className="eachQuestion_section-close">{showAnswer ? <button className="eachQuestion_section-minus_button"><AiOutlineMinus /></button> : <button className="eachQuestion_section-plus_button"><AiOutlinePlus /></button>}</div>
       <div>
         <p>Q. {data.question}</p>
         <p>A. {data.ans}</p>
